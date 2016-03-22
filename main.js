@@ -1,6 +1,6 @@
 var container, stats;
 
-var camera, controls, scene, renderer;
+var camera, controls, scene, renderer, target;
 
 var cross;
 
@@ -27,7 +27,8 @@ function init() {
     scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0xcccccc, 0.002);
     
-    controls = new OrbitControls(camera, new THREE.Vector3(0, 0, 0), container);
+    target = new THREE.Vector3(0, 0, 0);
+    controls = new OrbitControls(camera, target, container);
 
     var geometry = new THREE.SphereGeometry(20);
     var material = new THREE.MeshNormalMaterial()
@@ -59,5 +60,6 @@ function render() {
     renderer.render(scene, camera);
 }
 function onClickCommand1() {
-    //controls.target.set(0, 0, 0);
+    camera.position.set(500, 500, 500);
+    camera.lookAt(new THREE.Vector3(100, 100, 100));
 }

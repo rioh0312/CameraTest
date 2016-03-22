@@ -10,9 +10,9 @@ class OrbitControls {
         this._isMouseDown = false;
         this.orbitX = 0;
         this.orbitY = 0;
-        this.scale = 10;
+        this.scale = 100;
         this.maxRotationY = 90 * Math.PI / 180;
-        this.minRotationY = 0;
+        this.minRotationY = -90 * Math.PI / 180;
         this._init();
     }
 
@@ -40,11 +40,14 @@ class OrbitControls {
     }
 
     _mousewheel(e) {
-        this.scale -= e.wheelDelta / 5;
+        this.scale -= e.wheelDelta / 1;
         e.preventDefault();
     }
 
     _mousemove(e) {
+        if (!this._isMouseDown) {
+            return;
+        }
         var deltaX = e.pageX - this._prevX;
         var deltaY = e.pageY - this._prevY;
 
